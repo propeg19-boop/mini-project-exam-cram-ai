@@ -3,7 +3,7 @@
 # Entry point. All 3 routes are defined here.
 # Each route delegates its logic to utils/.
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from dotenv import load_dotenv
 from utils.priority import build_study_plan
 from utils.ai_handler import generate_answer
@@ -13,6 +13,16 @@ from utils.image_fetcher import fetch_images
 load_dotenv()
 
 app = Flask(__name__)
+
+
+# ─────────────────────────────────────────────
+# ROUTE 0: /
+# Serves the frontend HTML page.
+# Flask looks for index.html in the templates/ folder.
+# ─────────────────────────────────────────────
+@app.route("/")
+def home():
+    return render_template("index.html")
 
 
 # ─────────────────────────────────────────────
